@@ -1,0 +1,234 @@
+MainActivity.java
+
+package com.example.radiobutton; 
+
+import android.os.Bundle;
+
+import android.app.Activity; import
+
+android.view.View;
+
+import android.view.View.OnClickListener; 
+
+import android.widget.Button;
+
+import android.widget.RadioButton; 
+
+import android.widget.RadioGroup;
+
+import android.widget.RadioGroup.OnCheckedChangeListener; import 
+
+android.widget.TextView;
+
+import android.widget.Toast;
+
+public class MainActivity extends Activity
+
+{
+
+private RadioGroup radioGroup;
+
+private RadioButton sound, vibration, silent; 
+
+private Button button;
+
+private TextView textView; 
+
+@Override
+
+protected void onCreate(Bundle savedInstanceState)
+
+{
+
+super.onCreate(savedInstanceState); 
+
+setContentView(R.layout.activity_main);
+
+radioGroup = (RadioGroup) findViewById(R.id.myRadioGroup); 
+
+radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener()
+
+{
+
+@Override
+
+public void onCheckedChanged(RadioGroup group, int checkedId)
+
+{
+
+// find which radio button is selected
+if(checkedId == R.id.silent)
+{
+Toast.makeText(getApplicationContext(), "choice: Silent", Toast.LENGTH_SHORT).show();
+}
+else if(checkedId ==R.id.sound)
+{
+Toast.makeText(getApplicationContext(), "choice: Sound", Toast.LENGTH_SHORT).show();
+}
+else
+{
+Toast.makeText(getApplicationContext(), "choice: Vibration", 
+Toast.LENGTH_SHORT).show();
+}
+}
+});
+sound = (RadioButton) findViewById(R.id.sound); 
+vibration=(RadioButton)findViewById(R.id.vibrate); 
+silent = (RadioButton) findViewById(R.id.silent); 
+textView = (TextView) findViewById(R.id.textView1); 
+button = (Button)findViewById(R.id.button1); 
+button.setOnClickListener(newOnClickListener()
+{
+@Override
+public void onClick(View v) {
+int selectedId = radioGroup.getCheckedRadioButtonId();
+//findwhichradioButtonischeckedbyid 
+if(selectedId ==sound.getId())
+{
+textView.setText("You chose 'Sound' option");
+}
+else if(selectedId == vibration.getId())
+{
+textView.setText("You chose 'Vibration' option");
+}
+else
+{
+textView.setText("Youchose 'Silent' option");
+}
+}
+});
+}
+}
+MainActivity.xml
+<RelativeLayout 
+xmlns:android="http://schemas.android.com/apk/res/android" 
+xmlns:tools="http://schemas.android.com/tools" 
+android:layout_width="match_parent"
+android:layout_height="match_parent" 
+android:paddingBottom="@dimen/activity_vertical
+_margin" 
+android:paddingLeft="@dimen/activity_horizontal_
+margin" 
+android:paddingRight="@dimen/activity_horizontal
+_margin" 
+android:paddingTop="@dimen/activity_vertical_ma
+rgin" tools:context=".MainActivity" >
+<RadioGroup 
+android:id="@+id/myRadio
+Group" 
+android:layout_width="wrap
+_content" 
+android:layout_height="wrap_
+content" 
+android:layout_alignParentLef
+t="true"
+android:layout_below="@+id/
+
+textView1" 
+
+android:layout_marginLeft="
+
+27dp" 
+
+android:layout_marginTop="
+
+28dp" >
+
+<RadioButton 
+
+android:id="@+id/sound" 
+
+android:layout_width="wrap_
+
+content"
+
+---
+
+android:layout_height="wrap_
+
+content" 
+
+android:checked="true" 
+
+android:text="Sound" />
+
+<RadioButton 
+
+android:id="@+id/vibrate" 
+
+android:layout_width="wra
+
+p_content" 
+
+android:layout_height="wra
+
+p_content" 
+
+android:text="Vibration"
+
+/>
+
+<RadioButton 
+
+android:id="@+id/silent" 
+
+android:layout_width="wra
+
+p_content"
+
+android:layout_height="wra
+
+p_content" 
+
+android:text="Silent" />
+
+</RadioGroup>
+
+<TextView 
+
+android:id="@+id/textVie
+
+w1" 
+
+android:layout_width="wra
+p_content" 
+
+android:layout_height="wra
+
+p_content" 
+
+android:layout_alignParentL
+
+eft="true" 
+
+android:layout_alignParentT
+
+op="true"
+
+android:text="Choose one of the following modes"
+
+android:textAppearance="?android:attr/textAppearanceLarge" />
+
+<Button 
+
+android:id="@+id/but
+
+ton1"
+
+android:layout_width="wrap_content" 
+
+android:layout_height="wrap_content" 
+
+android:layout_alignLeft="@+id/myRadioGr
+
+oup" 
+
+android:layout_below="@+id/myRadioGro
+
+up" android:layout_marginLeft="42dp" 
+
+android:layout_marginTop="53dp" 
+
+android:text="choose" />
+
+</RelativeLayout>
